@@ -5,79 +5,82 @@ var gameSequence = [];
 var userSequence = [];
 
 function nextSequence() {
-    userSequence =[];
-    level++;
-    $("#level-title").text("Level " + level);
-    var randomNumber = Math.floor(Math.random()*6);
-    var randomInstrument = instrument[randomNumber];
-    playInstrument(randomInstrument);
-    $("#" + randomInstrument).fadeIn().fadeOut().fadeIn();
-    gameSequence.push(randomInstrument);
+  userSequence = [];
+  level++;
+  $("#level-title").text("Level " + level);
+  var randomNumber = Math.floor(Math.random() * 6);
+  var randomInstrument = instrument[randomNumber];
+  playInstrument(randomInstrument);
+  $("#" + randomInstrument)
+    .fadeIn()
+    .fadeOut()
+    .fadeIn();
+  gameSequence.push(randomInstrument);
 }
 
 function animatePress(currentInstrument) {
-    $("#" + currentInstrument).addClass("pressed");
-    setTimeout(function(){
-        $("#" + currentInstrument).removeClass("pressed");
-    }, 300);
+  $("#" + currentInstrument).addClass("pressed");
+  setTimeout(function () {
+    $("#" + currentInstrument).removeClass("pressed");
+  }, 300);
 }
 
 function playInstrument(instrumentName) {
-    var sound = new Audio("sounds/" + instrumentName + ".mp3")
-    sound.play();
+  var sound = new Audio("sounds/" + instrumentName + ".mp3");
+  sound.play();
 }
 
 var started = false;
 var level = 0;
-$(document).keydown(function(){
-    if(started == false) {
-        nextSequence();
-        $("#level-title").text("Level " + level);
-        started = true;
-    }
-})
+$(document).keydown(function () {
+  if (started == false) {
+    nextSequence();
+    $("#level-title").text("Level " + level);
+    started = true;
+  }
+});
 
-$(".btn").click(function(e){
-    if(started == true) {
-        var userChosenInstrument = $(this).attr("id");
-        userSequence.push(userChosenInstrument);
-        animatePress(userChosenInstrument);
-        playInstrument(userChosenInstrument);
-        checkAnswer(userSequence.length - 1);
-    }
-})
+$(".btn").click(function (e) {
+  if (started == true) {
+    var userChosenInstrument = $(this).attr("id");
+    userSequence.push(userChosenInstrument);
+    animatePress(userChosenInstrument);
+    playInstrument(userChosenInstrument);
+    checkAnswer(userSequence.length - 1);
+  }
+});
 
 function checkAnswer(currentLevel) {
-    if(userSequence[currentLevel] == gameSequence[currentLevel]) {
-        if(userSequence.length == gameSequence.length) {
-            console.log("correct")
-            setTimeout(nextSequence, 1000);
-        }
-    } else {
-        console.log("incorrect");
-        $("body").addClass("game-over");
-        setTimeout(() => {
-            $("body").removeClass("game-over");            
-        }, 2000);
-        playInstrument("wrong");
-        $("#level-title").text("You Lost At Level " + level);
-        setTimeout(() => {
-            $("#level-title").fadeOut().text("Press Any Key To Restart").fadeIn();
-        }, 5000);    
-        restart();
+  if (userSequence[currentLevel] == gameSequence[currentLevel]) {
+    if (userSequence.length == gameSequence.length) {
+      console.log("correct");
+      setTimeout(nextSequence, 1000);
     }
+  } else {
+    console.log("incorrect");
+    $("body").addClass("game-over");
+    setTimeout(() => {
+      $("body").removeClass("game-over");
+    }, 2000);
+    playInstrument("wrong");
+    $("#level-title").text("You Lost At Level " + level);
+    setTimeout(() => {
+      $("#level-title").fadeOut().text("Press Any Key To Restart").fadeIn();
+    }, 5000);
+    restart();
+  }
 }
 function restart() {
-    gameSequence = [];
-    userSequence = [];
-    level = 0;
-    started = false;
+  gameSequence = [];
+  userSequence = [];
+  level = 0;
+  started = false;
 }
 
-$("#instructions").click(function() {
-    $("#instructions").fadeOut(100).fadeIn(100)
-    $("#description").toggle();
-})
+$("#instructions").click(function () {
+  $("#instructions").fadeOut(100).fadeIn(100);
+  $("#description").toggle();
+});
 
 // For Mobile Phones and Tablets
 
@@ -88,41 +91,43 @@ if (width < 890) {
   var started = false;
   var level = 0;
   $("#level-title").click(() => {
-    if(started == false) {
-        nextSequence();
-        started = true;
+    if (started == false) {
+      nextSequence();
+      started = true;
     }
-  })
+  });
   function nextSequence() {
-    userSequence =[];
+    userSequence = [];
     level++;
     $("#level-title").text("Playing at level " + level);
-    var randomNumber = Math.floor(Math.random()*4);
+    var randomNumber = Math.floor(Math.random() * 4);
     var randomInstrument = instrument[randomNumber];
     playInstrument(randomInstrument);
-    $("#" + randomInstrument).fadeIn().fadeOut().fadeIn();
+    $("#" + randomInstrument)
+      .fadeIn()
+      .fadeOut()
+      .fadeIn();
     gameSequence.push(randomInstrument);
-}
+  }
 
-function checkAnswer(currentLevel) {
-    if(userSequence[currentLevel] == gameSequence[currentLevel]) {
-        if(userSequence.length == gameSequence.length) {
-            console.log("correct")
-            setTimeout(nextSequence, 1000);
-        }
+  function checkAnswer(currentLevel) {
+    if (userSequence[currentLevel] == gameSequence[currentLevel]) {
+      if (userSequence.length == gameSequence.length) {
+        console.log("correct");
+        setTimeout(nextSequence, 1000);
+      }
     } else {
-        console.log("incorrect");
-        $("body").addClass("game-over");
-        setTimeout(() => {
-            $("body").removeClass("game-over");            
-        }, 2000);
-        playInstrument("wrong");
-        $("#level-title").text("You Lost At Level " + level);  
-        setTimeout(() => {
-            $("#level-title").fadeOut().text("Tap Here To Restart").fadeIn(); 
-        }, 5000);
-        restart();
+      console.log("incorrect");
+      $("body").addClass("game-over");
+      setTimeout(() => {
+        $("body").removeClass("game-over");
+      }, 2000);
+      playInstrument("wrong");
+      $("#level-title").text("You Lost At Level " + level);
+      setTimeout(() => {
+        $("#level-title").fadeOut().text("Tap Here To Restart").fadeIn();
+      }, 5000);
+      restart();
     }
+  }
 }
-}
-
