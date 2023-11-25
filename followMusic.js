@@ -74,6 +74,11 @@ function restart() {
     started = false;
 }
 
+$("#instructions").click(function() {
+    $("#instructions").fadeOut(100).fadeIn(100)
+    $("#description").toggle();
+})
+
 // For Mobile Phones and Tablets
 
 var width = window.innerWidth;
@@ -85,14 +90,13 @@ if (width < 890) {
   $("#level-title").click(() => {
     if(started == false) {
         nextSequence();
-        $("#level-title").text("Playing at level " + level);
         started = true;
     }
   })
   function nextSequence() {
     userSequence =[];
     level++;
-    $("#level-title").text("Level " + level);
+    $("#level-title").text("Playing at level " + level);
     var randomNumber = Math.floor(Math.random()*4);
     var randomInstrument = instrument[randomNumber];
     playInstrument(randomInstrument);
