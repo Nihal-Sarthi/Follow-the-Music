@@ -1,0 +1,112 @@
+body {
+    text-align: center;
+    background-color: #0D1282;
+    
+}
+
+footer {
+    color: #EEEDED;
+    font-family: "Righteous";
+    font-size: 1.5em;
+    margin: 15px;
+}
+
+#level-title {
+    font-family: "Press Start 2P";
+    font-size: 2.5em;
+    color: #F0DE36;
+    margin: 3%;
+}
+
+.container {
+    display: block;
+    width: 80%;
+    margin: auto;
+}
+
+.btn {
+    height: 200px;
+    width: 200px;
+    display: inline-block;
+    background-color: #EEEDED;
+    border: 5px solid #F0DE36 ;    
+    border-radius: 30%;
+    margin: 10px;
+}
+
+.pressed {
+    box-shadow: 0 0 20px white;
+    background-color: grey;
+  }
+
+  #guitar {
+    background-image: url("images/guitar.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+  }
+
+  #bell {
+    background-image: url("images/bell.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #drum {
+    background-image: url("images/drum.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #flute {
+    background-image: url("images/flute.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #horn {
+    background-image: url("images/horn.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #kalimba {
+    background-image: url("images/kalimba.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .game-over {
+    background-color: #D71313;
+    opacity: 50%;
+  }
+
+@media all and (max-width:890px) {
+
+  #flute {
+    display: none;
+  }
+
+  #bell {
+    display: none;
+  }
+  .row {
+    display: inline-flex;
+    align-content:stretch;
+    width: 100%;
+    margin: 5%;
+    align-content: stretch;
+    gap: 5%;
+  }
+  
+  .btn {
+    height: 200px;
+    width: 200px;
+  }
+}
