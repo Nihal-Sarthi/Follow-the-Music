@@ -73,7 +73,7 @@ footer {
 
 #description {
   display: none;
-  text-align: justify;
+  text-align: left;
   font-family: "Noto Serif";
   font-size: 1em;
   background-color: #d71313af;
