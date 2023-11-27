@@ -32,10 +32,10 @@ function playInstrument(instrumentName) {
 
 var started = false;
 var level = 0;
-$(document).keydown(function () {
+$("#level-title").click(() => {
   if (started == false) {
+    $("#level-title").fadeOut(120).fadeIn(90);
     nextSequence();
-    $("#level-title").text("Level " + level);
     started = true;
   }
 });
@@ -63,9 +63,15 @@ function checkAnswer(currentLevel) {
       $("body").removeClass("game-over");
     }, 2000);
     playInstrument("wrong");
-    $("#level-title").text("You Lost At Level " + level);
+    $("#level-title").text("Game Over On Level " + level);
     setTimeout(() => {
-      $("#level-title").fadeOut().text("Press Any Key To Restart").fadeIn();
+      $("#level-title")
+        .fadeOut()
+        .html(
+          '<button class="start-button"><img src="images/start-button.png" alt="start button" id="start-icon"></button>'
+        )
+        .fadeIn();
+      $("#restart-icon").addClass("show");
     }, 5000);
     restart();
   }
@@ -85,21 +91,13 @@ $("#instructions").click(function () {
 // For Mobile Phones and Tablets
 
 var width = window.innerWidth;
-if (width < 890) {
+if (width < 920) {
   instrument = ["guitar", "drum", "horn", "kalimba"];
-  $("#level-title").text("Tap Here To Start");
-  var started = false;
-  var level = 0;
-  $("#level-title").click(() => {
-    if (started == false) {
-      nextSequence();
-      started = true;
-    }
-  });
+
   function nextSequence() {
     userSequence = [];
     level++;
-    $("#level-title").text("Playing at level " + level);
+    $("#level-title").text("Level " + level);
     var randomNumber = Math.floor(Math.random() * 4);
     var randomInstrument = instrument[randomNumber];
     playInstrument(randomInstrument);
@@ -113,19 +111,22 @@ if (width < 890) {
   function checkAnswer(currentLevel) {
     if (userSequence[currentLevel] == gameSequence[currentLevel]) {
       if (userSequence.length == gameSequence.length) {
-        console.log("correct");
         setTimeout(nextSequence, 1000);
       }
     } else {
-      console.log("incorrect");
       $("body").addClass("game-over");
       setTimeout(() => {
         $("body").removeClass("game-over");
       }, 2000);
       playInstrument("wrong");
-      $("#level-title").text("You Lost At Level " + level);
+      $("#level-title").text("Game Over on Level " + level);
       setTimeout(() => {
-        $("#level-title").fadeOut().text("Tap Here To Restart").fadeIn();
+        $("#level-title").fadeOut();
+        $("#level-title")
+          .html(
+            '<button class="start-button"><img src="images/start-button.png" alt="start button" id="start-icon"></button>'
+          )
+          .fadeIn();
       }, 5000);
       restart();
     }
