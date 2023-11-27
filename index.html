@@ -3,20 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Follow Music</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Righteous&display=swap"
-      rel="stylesheet"
-    />
+    <title>Follow The Music</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital@1&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
-      <h1 id="level-title">Press A Key To Start</h1>
+      <h1 id="level-title"><button class="start-button"><img src="images/start-button.png" alt="start button" id="start-icon"></button></h1>
+      <button id="instructions">Instructions</button>
     </header>
     <main>
+      <div id="description">
+        <h3>
+          The Follow The Music Game typically involves remembering and repeating a sequence of instruments or tones. Here's a basic guide:
+        </h3>
+        <br /><span class="bold-text">1. Start:</span> Press the game's start button.<br />
+        <span class="bold-text">2. Watch and Listen:</span> Pay attention to the sequence of instruments or tones that is played.<br />
+        <span class="bold-text">3. Repeat:</span> Repeat the sequence by pressing the corresponding buttons in the same order.<br />
+        <span class="bold-text">4. Progress:</span> The game will add a new element to the sequence. Repeat the entire sequence,
+        including the new addition.<br />
+        <span class="bold-text">5. Continue:</span>Keep repeating and remembering the sequence as it grows longer.<br />
+        <span class="bold-text">6. Mistakes:</span>If you make a mistake, the game will signal it, and you have to start over.<br />
+        <span class="bold-text">7. Winning:</span> The goal is to successfully repeat the increasingly longer sequences.
+      </div>
       <div class="container">
         <div class="row">
           <div type="button" id="guitar" class="guitar btn"></div>
@@ -28,13 +39,6 @@
           <div type="button" id="horn" class="horn btn"></div>
           <div type="button" id="kalimba" class="kalimba btn"></div>
         </div>
-        <div id="description" style="display: none">
-          When you start the game one of the instrument will flash and play a
-          sound. You have to remember the sequence in which the instruments are
-          played and press the instruments in the same sequence. You have to play all the instruments from level 1 to your current level in that particular order, if you change the order of the instruments played then you lose the game.
-        </div>
-        <button id="instructions">Instructions</button>
-      </div>
     </main>
     <footer>
       <div>Made by Nihal Sarthi...</div>
