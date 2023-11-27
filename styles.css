@@ -1,11 +1,19 @@
 body {
   text-align: center;
   background-color: #0d1282;
+  font-family: "Press Start 2P";
+}
+
+header {
+  margin: 2%;
+  margin-bottom: 1%;
+  align-content: center;
+  text-align: center;
 }
 
 footer {
   color: #eeeded;
-  font-family: "Righteous";
+  font-family: "Press Start 2P";
   font-size: 1.5em;
   margin: 15px;
 }
@@ -14,8 +22,26 @@ footer {
   font-family: "Press Start 2P";
   font-size: 2.5em;
   color: #f0de36;
-  margin: 5%;
   line-height: 125%;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 0;
+}
+
+.start-button {
+  background-color: #d71313d5;
+  border: solid #f0de36;
+  border-radius: 40%;
+  height: 6.4em;
+  object-fit: contain;
+  align-content: center;
+}
+
+#start-icon {
+  height: 6.4em;
+  margin: 0;
+  padding: 0;
+  border-radius: 40%;
 }
 
 .container {
@@ -35,14 +61,26 @@ footer {
 }
 
 #instructions {
-  display: inline-flex;
+  align-content: center;
   color: #0d1282;
-  font-family: "Righteous";
+  font-family: "Noto Serif";
   font-size: 1em;
   border: 2px solid #f0de36;
   border-radius: 50%;
-  margin: 15px;
   padding: 5px;
+  margin: 0;
+}
+
+#description {
+  display: none;
+  text-align: justify;
+  font-family: "Noto Serif";
+  font-size: 1em;
+  background-color: #d71313af;
+  color: #eeeded;
+  border: 4px solid #f0de36;
+  border-radius: 5%;
+  padding: 5%;
 }
 
 .pressed {
@@ -93,20 +131,15 @@ footer {
 }
 
 .game-over {
-  background-color: #d71313;
+  background-color: #d71313dc;
   opacity: 50%;
 }
 
-#description {
-  font-size: 1em;
-  background-color: #f0dd368a;
-  color: #eeeded;
-  border: 4px solid #f0de36;
-  border-radius: 5%;
-  padding: 5%;
+.bold-text {
+  font-weight: bold;
 }
 
-@media all and (max-width: 890px) {
+@media all and (max-width: 920px) {
   #flute {
     display: none;
   }
