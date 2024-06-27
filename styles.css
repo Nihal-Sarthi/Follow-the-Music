@@ -1,11 +1,11 @@
 body {
+  margin: 0;
   text-align: center;
   background-color: #0d1282;
   font-family: "Press Start 2P";
 }
 
 header {
-  margin: 2%;
   margin-bottom: 1%;
   align-content: center;
   text-align: center;
@@ -23,25 +23,9 @@ footer {
   font-size: 2.5em;
   color: #f0de36;
   line-height: 125%;
-  margin-bottom: 0;
   text-align: center;
+  margin: 3%;
   padding: 0;
-}
-
-.start-button {
-  background-color: #d71313d5;
-  border: solid #f0de36;
-  border-radius: 40%;
-  height: 6.4em;
-  object-fit: contain;
-  align-content: center;
-}
-
-#start-icon {
-  height: 6.4em;
-  margin: 0;
-  padding: 0;
-  border-radius: 40%;
 }
 
 .container {
@@ -50,7 +34,7 @@ footer {
   margin: auto;
 }
 
-.btn {
+.my-btn {
   height: 200px;
   width: 200px;
   display: inline-block;
@@ -60,15 +44,10 @@ footer {
   margin: 10px;
 }
 
-#instructions {
-  align-content: center;
-  color: #0d1282;
-  font-family: "Noto Serif";
-  font-size: 1em;
-  border: 2px solid #f0de36;
-  border-radius: 50%;
-  padding: 5px;
-  margin: 0;
+.start-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #description {
@@ -76,11 +55,12 @@ footer {
   text-align: left;
   font-family: "Noto Serif";
   font-size: 1em;
-  background-color: #d71313af;
+  background-color: #ff5252;
   color: #eeeded;
   border: 4px solid #f0de36;
   border-radius: 5%;
   padding: 5%;
+  margin: 3%;
 }
 
 .pressed {
@@ -139,25 +119,167 @@ footer {
   font-weight: bold;
 }
 
-@media all and (max-width: 920px) {
-  #flute {
-    display: none;
-  }
+.row {
+  display: flex;
+  justify-content: space-around;
+}
 
-  #bell {
-    display: none;
-  }
-  .row {
-    display: inline-flex;
-    align-content: stretch;
-    width: 100%;
+.comic-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff5252;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.comic-button:hover {
+  background-color: #fff;
+  color: #ff5252;
+  border: 2px solid #ff5252;
+  box-shadow: 5px 5px 0px #ff5252;
+}
+
+.comic-button:active {
+  background-color: #fcf414;
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+#instructions {
+  background: #fbca1f;
+  font-family: inherit;
+  margin: 5%;
+  margin-top: 0;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 15px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+  cursor: pointer;
+}
+
+#instruction:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
+}
+
+#instruction:active {
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
+}
+
+.close-btn {
+  font-size: 0.7em;
+  color: white;
+  background-color: red;
+  position: relative;
+  left: 75%;
+  padding: 1%;
+}
+
+/* For small mobile devices */
+
+@media (width < 410px) {
+  header {
     margin: 5%;
-    align-content: stretch;
-    gap: 5%;
+    padding: 0;
   }
 
-  .btn {
-    height: 200px;
-    width: 200px;
+  main {
+    margin: 0;
+    padding: 0;
+  }
+
+  .my-btn {
+    height: 150px;
+    width: 150px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 45%;
+  }
+
+  #drum {
+    display: none;
+  }
+
+  #horn {
+    display: none;
+  }
+
+  #instructions {
+    margin: 0;
+  }
+
+  #description {
+    width: 90%;
+    margin: 5%;
+    margin-top: 0;
+  }
+  #instructions {
+    margin: 5% 0;
+  }
+}
+
+/* For average sized mobile phones and tablets*/
+
+@media all and (min-width: 410px) and (max-width: 825px) {
+  header {
+    height: 15vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  .my-btn {
+    height: 150px;
+    width: 150px;
+  }
+
+  #start-button {
+    padding: 20px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5% 0;
+    gap: 50px;
+    width: 45%;
+  }
+
+  #drum {
+    display: none;
+  }
+
+  #horn {
+    display: none;
+  }
+
+  #instructions {
+    margin: 0;
+  }
+
+  #description {
+    width: 90%;
+    margin: 0 5%;
+  }
+
+  #instructions {
+    margin: 5% 0;
+    padding: 5%;
   }
 }
