@@ -1,3 +1,5 @@
+// For Laptops and big screen devices
+
 // Game start
 var gameInstruments = ["guitar", "bell", "drum", "flute", "horn", "kalimba"];
 var gamePattern = [];
@@ -27,7 +29,7 @@ function nextPattern() {
   playerPattern = [];
   $("#start-button").hide("fast");
   $("#level-title").html(`Level: ${level}`);
-  $("#level-title").show('fast')
+  $("#level-title").show("fast");
   let randomNumber = Math.floor(Math.random() * gameInstruments.length);
   let randomChosenColor = gameInstruments[randomNumber];
   gamePattern.push(randomChosenColor);

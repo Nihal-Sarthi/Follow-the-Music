@@ -24,7 +24,7 @@ footer {
   color: #f0de36;
   line-height: 125%;
   text-align: center;
-  margin:3%;
+  margin: 3%;
   padding: 0;
 }
 
@@ -156,7 +156,7 @@ footer {
 #instructions {
   background: #fbca1f;
   font-family: inherit;
-  margin:5%;
+  margin: 5%;
   margin-top: 0;
   padding: 0.6em 1.3em;
   font-weight: 900;
@@ -181,8 +181,8 @@ footer {
   font-size: 0.7em;
   color: white;
   background-color: red;
-  position:relative;
-  left:75%;
+  position: relative;
+  left: 75%;
   padding: 1%;
 }
 
