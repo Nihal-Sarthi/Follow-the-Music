@@ -1,134 +1,149 @@
-// For Laptops and Computers
+// Game start
+var gameInstruments = ["guitar", "bell", "drum", "flute", "horn", "kalimba"];
+var gamePattern = [];
+var playerPattern = [];
 
-var instrument = ["guitar", "bell", "drum", "flute", "horn", "kalimba"];
-var gameSequence = [];
-var userSequence = [];
+let gameStarted = false;
+let level = 0;
 
-function nextSequence() {
-  userSequence = [];
+$(document).on("keydown", () => {
+  if (gameStarted == false) {
+    gameStarted = true;
+    nextPattern();
+  }
+});
+
+// For touchscreens
+$("#start-button").on("click", () => {
+  if (gameStarted == false) {
+    gameStarted = true;
+    nextPattern();
+  }
+});
+
+// create pattern
+function nextPattern() {
   level++;
-  $("#level-title").text("Level " + level);
-  var randomNumber = Math.floor(Math.random() * 6);
-  var randomInstrument = instrument[randomNumber];
-  playInstrument(randomInstrument);
-  $("#" + randomInstrument)
-    .fadeIn()
-    .fadeOut()
-    .fadeIn();
-  gameSequence.push(randomInstrument);
+  playerPattern = [];
+  $("#start-button").hide("fast");
+  $("#level-title").html(`Level: ${level}`);
+  $("#level-title").show('fast')
+  let randomNumber = Math.floor(Math.random() * gameInstruments.length);
+  let randomChosenColor = gameInstruments[randomNumber];
+  gamePattern.push(randomChosenColor);
+  animateButton(randomChosenColor);
+  playMusic(randomChosenColor);
 }
 
-function animatePress(currentInstrument) {
-  $("#" + currentInstrument).addClass("pressed");
-  setTimeout(function () {
-    $("#" + currentInstrument).removeClass("pressed");
-  }, 300);
+function animateButton(color) {
+  $(`.${color}`).addClass("pressed");
+  setTimeout(() => {
+    $(`.${color}`).removeClass("pressed");
+  }, "400");
 }
 
-function playInstrument(instrumentName) {
-  var sound = new Audio("sounds/" + instrumentName + ".mp3");
+function playMusic(color) {
+  let sound = new Audio(`sounds/${color}.mp3`);
   sound.play();
 }
 
-var started = false;
-var level = 0;
-$("#level-title").click(() => {
-  if (started == false) {
-    $("#level-title").fadeOut(120).fadeIn(90);
-    nextSequence();
-    started = true;
-  }
+// Click button
+$(".my-btn").on("click", (e) => {
+  let buttonId = e.target.id; // To get the id of button clicked
+  playerPattern.push(buttonId);
+  playMusic(buttonId);
+  animateButton(buttonId);
+  checkPattern(playerPattern.length - 1); // To compare playerPattern and gamePattern array values
 });
 
-$(".btn").click(function (e) {
-  if (started == true) {
-    var userChosenInstrument = $(this).attr("id");
-    userSequence.push(userChosenInstrument);
-    animatePress(userChosenInstrument);
-    playInstrument(userChosenInstrument);
-    checkAnswer(userSequence.length - 1);
-  }
-});
-
-function checkAnswer(currentLevel) {
-  if (userSequence[currentLevel] == gameSequence[currentLevel]) {
-    if (userSequence.length == gameSequence.length) {
-      console.log("correct");
-      setTimeout(nextSequence, 1000);
+// check answer
+function checkPattern(currentLevel) {
+  if (playerPattern[currentLevel] == gamePattern[currentLevel]) {
+    // Comparing each index value of both arrays as each button is clicked
+    if (playerPattern.length == gamePattern.length) {
+      setTimeout(playEntireGamePattern, 2000); // Wait for 2 seconds before executing playEntireGamePattern()
     }
   } else {
-    console.log("incorrect");
-    $("body").addClass("game-over");
-    setTimeout(() => {
-      $("body").removeClass("game-over");
-    }, 2000);
-    playInstrument("wrong");
-    $("#level-title").text("Game Over On Level " + level);
-    setTimeout(() => {
-      $("#level-title")
-        .fadeOut()
-        .html(
-          '<button class="start-button"><img src="images/start-button.png" alt="start button" id="start-icon"></button>'
-        )
-        .fadeIn();
-      $("#restart-icon").addClass("show");
-    }, 5000);
-    restart();
+    gameOver();
   }
 }
-function restart() {
-  gameSequence = [];
-  userSequence = [];
+
+// Repeat previous values and add one more value
+function playEntireGamePattern() {
+  for (let i = 0; i < gamePattern.length; i++) {
+    setTimeout(() => {
+      animateButton(gamePattern[i]);
+      playMusic(gamePattern[i]);
+    }, 800 * i);
+  }
+  setTimeout(nextPattern, gamePattern.length * 700); // next pattern plays after looping through array
+}
+
+function gameOver() {
+  $("#level-title").fadeOut(250).fadeIn();
+  $("#level-title").html(`Game Over At Level: ${level}`);
+  $("body").addClass("game-over");
+  playMusic("wrong");
+  setTimeout(resetGame, 4000);
+}
+
+// Reset Game
+function resetGame() {
+  gamePattern = [];
+  playerPattern = [];
   level = 0;
-  started = false;
+  gameStarted = false;
+  $("body").removeClass("game-over");
+  $("#level-title").html(`Press A Key to Start`);
+  $("#start-button").show();
 }
 
 $("#instructions").click(function () {
-  $("#instructions").fadeOut(100).fadeIn(100);
   $("#description").toggle();
 });
 
-// For Mobile Phones and Tablets
+$(".close-btn").click(function () {
+  $("#description").hide();
+});
+
+// For Mobile Phones and small screen devices
 
 var width = window.innerWidth;
-if (width < 920) {
-  instrument = ["guitar", "drum", "horn", "kalimba"];
 
-  function nextSequence() {
-    userSequence = [];
+if (width < 826) {
+  $("#level-title").hide();
+
+  $("#start-button").on("click", () => {
+    if (gameStarted == false) {
+      gameStarted = true;
+      nextPattern();
+    }
+  });
+
+  gameInstruments = ["guitar", "bell", "flute", "kalimba"];
+
+  function nextPattern() {
     level++;
-    $("#level-title").text("Level " + level);
-    var randomNumber = Math.floor(Math.random() * 4);
-    var randomInstrument = instrument[randomNumber];
-    playInstrument(randomInstrument);
-    $("#" + randomInstrument)
-      .fadeIn()
-      .fadeOut()
-      .fadeIn();
-    gameSequence.push(randomInstrument);
+    $("#level-title").show("fast");
+    $("#start-button").hide("fast");
+    $("#level-title").html(`Level: ${level}`);
+    playerPattern = [];
+    let randomNumber = Math.floor(Math.random() * gameInstruments.length);
+    let randomChosenColor = gameInstruments[randomNumber];
+    gamePattern.push(randomChosenColor);
+    setTimeout(() => {
+      animateButton(randomChosenColor);
+      playMusic(randomChosenColor);
+    }, 700);
   }
 
-  function checkAnswer(currentLevel) {
-    if (userSequence[currentLevel] == gameSequence[currentLevel]) {
-      if (userSequence.length == gameSequence.length) {
-        setTimeout(nextSequence, 1000);
-      }
-    } else {
-      $("body").addClass("game-over");
-      setTimeout(() => {
-        $("body").removeClass("game-over");
-      }, 2000);
-      playInstrument("wrong");
-      $("#level-title").text("Game Over on Level " + level);
-      setTimeout(() => {
-        $("#level-title").fadeOut();
-        $("#level-title")
-          .html(
-            '<button class="start-button"><img src="images/start-button.png" alt="start button" id="start-icon"></button>'
-          )
-          .fadeIn();
-      }, 5000);
-      restart();
-    }
+  function resetGame() {
+    gamePattern = [];
+    playerPattern = [];
+    level = 0;
+    gameStarted = false;
+    $("body").removeClass("game-over");
+    $("#level-title").hide("slow");
+    $("#start-button").show("slow");
   }
 }
