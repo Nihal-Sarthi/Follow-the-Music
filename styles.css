@@ -1,18 +1,28 @@
+:root {
+  --main-color: #6c5ce7;
+  --instrument-background-color: #f5f6fa;
+  --secondary-color: #fd7272;
+  --highlight-color: #fdcb6e;
+  --error-color: #e17055;
+  --text-color: #2d3436;
+}
+
 body {
   margin: 0;
   text-align: center;
-  background-color: #0d1282;
+  background-color: var(--main-color);
   font-family: "Press Start 2P";
+  background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
 }
 
 header {
-  margin-bottom: 1%;
+  margin: 1.5rem auto;
   align-content: center;
   text-align: center;
 }
 
 footer {
-  color: #eeeded;
+  color: var(--text-color);
   font-family: "Press Start 2P";
   font-size: 1.5em;
   margin: 15px;
@@ -21,10 +31,10 @@ footer {
 #level-title {
   font-family: "Press Start 2P";
   font-size: 2.5em;
-  color: #f0de36;
+  color: var(--highlight-color);
   line-height: 125%;
   text-align: center;
-  margin: 3%;
+  margin: 0;
   padding: 0;
 }
 
@@ -38,8 +48,8 @@ footer {
   height: 200px;
   width: 200px;
   display: inline-block;
-  background-color: #eeeded;
-  border: 5px solid #f0de36;
+  background-color: var(--instrument-background-color);
+  border: 5px solid var(--highlight-color);
   border-radius: 30%;
   margin: 10px;
 }
@@ -52,62 +62,58 @@ footer {
 
 #description {
   display: none;
+  box-sizing: border-box;
   text-align: left;
-  font-family: "Noto Serif";
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   font-size: 1em;
-  background-color: #ff5252;
-  color: #eeeded;
-  border: 4px solid #f0de36;
-  border-radius: 5%;
-  padding: 5%;
-  margin: 3%;
+  background-color: var(--secondary-color);
+  background-image: url("https://www.transparenttextures.com/patterns/straws.png");
+  color: var(--text-color);
+  border: 4px solid var(--main-color);
+  border-radius: 2rem;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+#description ol {
+  font-size: 1.3rem;
 }
 
 .pressed {
   box-shadow: 0 0 20px white;
-  background-color: grey;
+  background-color: var(--highlight-color);
+}
+
+.my-btn {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #guitar {
   background-image: url("images/guitar.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 #bell {
   background-image: url("images/bell.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 #drum {
   background-image: url("images/drum.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 #flute {
   background-image: url("images/flute.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 #horn {
   background-image: url("images/horn.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 #kalimba {
   background-image: url("images/kalimba.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .game-over {
@@ -141,6 +147,8 @@ footer {
 }
 
 .comic-button:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
   background-color: #fff;
   color: #ff5252;
   border: 2px solid #ff5252;
@@ -148,6 +156,8 @@ footer {
 }
 
 .comic-button:active {
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
   background-color: #fcf414;
   box-shadow: none;
   transform: translateY(4px);
@@ -156,34 +166,40 @@ footer {
 #instructions {
   background: #fbca1f;
   font-family: inherit;
-  margin: 5%;
+  margin: 1rem;
   margin-top: 0;
   padding: 0.6em 1.3em;
   font-weight: 900;
   font-size: 15px;
-  border: 3px solid black;
+  border: 3px solid var(--text-color);
   border-radius: 0.4em;
   box-shadow: 0.1em 0.1em;
   cursor: pointer;
 }
 
-#instruction:hover {
+#instructions:hover {
   transform: translate(-0.05em, -0.05em);
   box-shadow: 0.15em 0.15em;
+  background-color: #fff;
+  color: #fbca1f;
+  border: 2px solid #fbca1f;
+  box-shadow: 5px 5px 0px #fbca1f;
 }
 
-#instruction:active {
+#instructions:active {
   transform: translate(0.05em, 0.05em);
   box-shadow: 0.05em 0.05em;
 }
 
 .close-btn {
-  font-size: 0.7em;
+  font-size: 0.7rem;
   color: white;
   background-color: red;
   position: relative;
   left: 75%;
-  padding: 1%;
+  padding: 0.8rem;
+  border: solid 1px white;
+  border-radius: 15px;
 }
 
 /* For small mobile devices */
