@@ -33,5 +33,3 @@ Rhythm-Repeat is a memory-based game where players must replicate a sequence of 
 - **CSS**: Styling and animations.
 - **JavaScript**: Game logic and interactivity.
 - **jQuery**: Simplified DOM manipulation and event handling.
-
-## File Structure
